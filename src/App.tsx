@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Dispatch, SetStateAction, useEffect, useState, useCallback} from "react";
+
+import Data from './components/map/Data'
+import MapComponent from "./components/map/MapComponent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [fileData, setFileData]:[any[], Dispatch<SetStateAction<any[]>>] = useState<any[]>([]);
+
+    return (
+        <div>
+            <Data fileData={fileData} setFileData={setFileData} />
+            <MapComponent fileData={fileData} setFileData={setFileData} />
+        </div>
+    );
 }
 
 export default App;
