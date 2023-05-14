@@ -22,7 +22,6 @@ const container = css`
 const stContainer = css`
     padding: 2px;
     background-color: rgba(255, 255, 0, 1);
-    text-align: center;
     border-radius: 10px;
 `;
 
