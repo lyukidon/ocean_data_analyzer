@@ -83,7 +83,6 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
             clickable={true}
             onClick={() => setToggle((prev) => !prev)}
         >
-            <div css={titleContainer}>{`CAST:${cast}`}</div>
             {toggle && (
                 <CustomOverlayMap position={{ lat: LAT, lng: LON }}>
                     <div css={detailContainer}>

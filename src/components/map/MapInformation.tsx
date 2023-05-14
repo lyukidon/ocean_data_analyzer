@@ -9,7 +9,7 @@ const MapInformation = () => {
             arr = [
                 ...arr,
                 [
-                    { lat: 32, lng: 135 - i },
+                    { lat: 29, lng: 135 - i },
                     { lat: 37, lng: 135 - i },
                 ],
             ];
@@ -19,7 +19,7 @@ const MapInformation = () => {
     const [latLine, setLatLine] = useState<any[]>([]);
     const latMaker = () => {
         let arr: any[] = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             arr = [
                 ...arr,
                 [
