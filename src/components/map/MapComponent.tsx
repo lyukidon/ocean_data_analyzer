@@ -1,10 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
-import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
+import {
+    Map,
+    MapMarker,
+    CustomOverlayMap,
+    Polyline,
+} from "react-kakao-maps-sdk";
 import { css } from "@emotion/react";
 
 // components
 import Marker from "./Marker";
+import MapInformation from "./MapInformation";
 
 const container = css`
     width: 90%;
@@ -73,10 +79,10 @@ type selectedDateType = {
 };
 
 interface positionType {
-    latStart : number,
-    latEnd : number,
-    lonStart : number,
-    lonEnd : number,
+    latStart: number;
+    latEnd: number;
+    lonStart: number;
+    lonEnd: number;
 }
 
 const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
@@ -172,39 +178,49 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
     }, [selectedDate]);
 
     const [position, setPosition] = useState<positionType>({
-        latStart:0,
-        latEnd:0,
-        lonStart:0,
-        lonEnd:0,
-    })
+        latStart: 0,
+        latEnd: 0,
+        lonStart: 0,
+        lonEnd: 0,
+    });
 
-    const onChangePosition = (e:React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        console.log({[name]:value})
-        setPosition((prev) => ({...prev, [name]:value}))
-    }
+    const onChangePosition = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        console.log({ [name]: value });
+        setPosition((prev) => ({ ...prev, [name]: value }));
+    };
 
-    const onClickPosition = (e:React.MouseEvent<HTMLButtonElement>) => {
-        switch (e.currentTarget.dataset.action){
-            case 'latSearch' :
-                const latData = fileData.filter( cur => cur.LAT >= position.latStart && cur.LAT <= position.latEnd);
-                setSelectedFileData((prev)=>[...latData])
+    const onClickPosition = (e: React.MouseEvent<HTMLButtonElement>) => {
+        switch (e.currentTarget.dataset.action) {
+            case "latSearch":
+                const latData = fileData.filter(
+                    (cur) =>
+                        cur.LAT >= position.latStart &&
+                        cur.LAT <= position.latEnd
+                );
+                setSelectedFileData((prev) => [...latData]);
                 break;
-            case 'lonSearch' :
-                const lonData = fileData.filter( cur => cur.LON >= position.lonStart && cur.LON <= position.lonEnd);
-                setSelectedFileData( prev => [...lonData])
+            case "lonSearch":
+                const lonData = fileData.filter(
+                    (cur) =>
+                        cur.LON >= position.lonStart &&
+                        cur.LON <= position.lonEnd
+                );
+                setSelectedFileData((prev) => [...lonData]);
                 break;
-            case 'search' :
-                const data = fileData.filter( 
-                    cur => 
-                        cur.LAT >= position.latStart && cur.LAT <= position.latEnd &&
-                        cur.LON >= position.lonStart && cur.LON <= position.lonEnd
-                    );
-                setSelectedFileData( prev => [...data])
+            case "search":
+                const data = fileData.filter(
+                    (cur) =>
+                        cur.LAT >= position.latStart &&
+                        cur.LAT <= position.latEnd &&
+                        cur.LON >= position.lonStart &&
+                        cur.LON <= position.lonEnd
+                );
+                setSelectedFileData((prev) => [...data]);
                 break;
         }
-        const data = fileData.filter
-    }
+        const data = fileData.filter;
+    };
 
     return (
         <div>
@@ -227,10 +243,20 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
             </div>
             <div>
                 <div>
-                    위도 시작: <input type="text" name="latStart" onChange={onChangePosition}/>
-                    위도 끝: <input type="text" name="latEnd" onChange={onChangePosition}/>
-                    <button 
-                        type="button" 
+                    위도 시작:{" "}
+                    <input
+                        type="text"
+                        name="latStart"
+                        onChange={onChangePosition}
+                    />
+                    위도 끝:{" "}
+                    <input
+                        type="text"
+                        name="latEnd"
+                        onChange={onChangePosition}
+                    />
+                    <button
+                        type="button"
                         data-action="latSearch"
                         onClick={onClickPosition}
                     >
@@ -238,18 +264,28 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                     </button>
                 </div>
                 <div>
-                    경도 시작: <input type="text" name="lonStart" onChange={onChangePosition}/>
-                    경도 끝: <input type="text" name="lonEnd" onChange={onChangePosition}/>
-                    <button 
-                        type="button" 
+                    경도 시작:{" "}
+                    <input
+                        type="text"
+                        name="lonStart"
+                        onChange={onChangePosition}
+                    />
+                    경도 끝:{" "}
+                    <input
+                        type="text"
+                        name="lonEnd"
+                        onChange={onChangePosition}
+                    />
+                    <button
+                        type="button"
                         data-action="lonSearch"
                         onClick={onClickPosition}
                     >
                         경도 검색
                     </button>
                 </div>
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     data-action="search"
                     onClick={onClickPosition}
                 >
@@ -262,6 +298,7 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                 center={{ lat: 33.44541, lng: 128.04924 }}
                 level={13}
             >
+                <MapInformation />
                 {stage.map((st) => {
                     const { lat, lng, name } = st;
                     return (
