@@ -11,9 +11,6 @@ import { MarkerData } from "./MapComponent";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
-const titleContainer = css`
-    background-color: rgba(0, 0, 0, 0);
-`;
 const detailTitle = css`
     display: flex;
     flex-direction: row;
@@ -120,7 +117,6 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
                                             x: {
                                                 position: "top",
                                                 type: "linear",
-                                                min: 0,
                                             },
                                             y: {
                                                 reverse: true,
@@ -152,7 +148,6 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
                                             x: {
                                                 position: "top",
                                                 type: "linear",
-                                                min: 0,
                                             },
                                             y: {
                                                 reverse: true,

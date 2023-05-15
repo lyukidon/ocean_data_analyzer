@@ -296,7 +296,7 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData }: Props) => {
             <Map
                 css={container}
                 center={{ lat: 33.44541, lng: 128.04924 }}
-                level={13}
+                level={14}
             >
                 <MapInformation />
                 {stage.map((st) => {
