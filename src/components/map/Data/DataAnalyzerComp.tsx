@@ -14,8 +14,7 @@ const menuContainer = css`
     position: fixed;
     top: 0;
     left: 0;
-    
-`
+`;
 
 interface Props {
     fileData: any[];
@@ -34,7 +33,7 @@ interface dataType {
     S: number[];
 }
 
-const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
+const DataAnalyzerComp: React.FC<Props> = ({ fileData, setFileData }: Props) => {
     const [file, setFile] = useState<any>();
 
     const dataGetter = async (
@@ -85,7 +84,7 @@ const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                 let obj: any = {};
                 let cast = 1;
                 for (let i = 1; i < splittedData.length - 1; i++) {
-                    console.log(i)
+                    console.log(i);
                     // 0 : head, last: null
                     if (i === splittedData.length - 2) {
                         // last turn: push obj in arr
@@ -100,12 +99,11 @@ const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                                 obj[title].push(+data);
                             }
                         }
-                        arr.push(obj)
-                        
+                        arr.push(obj);
                     } else if (splittedData[i][0] !== cast) {
                         // turn that cast is changed
                         cast = splittedData[i][0];
-                        arr.push(obj)
+                        arr.push(obj);
                         obj = {};
                         for (let j = 0; j < splittedData[i].length; j++) {
                             const title = splittedData[0][j];
@@ -130,7 +128,7 @@ const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                                     title === "T" ||
                                     title === "S"
                                 ) {
-                                    obj[title]=[...obj[title], +data];
+                                    obj[title] = [...obj[title], +data];
                                 }
                             }
                         } catch (err) {
@@ -138,7 +136,7 @@ const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
                         }
                     }
                 }
-                setFileData([...arr])
+                setFileData([...arr]);
             }
         },
         [file]
@@ -154,13 +152,15 @@ const Data: React.FC<Props> = ({ fileData, setFileData }: Props) => {
 
     return (
         <div>
-            <input
-                type="file"
-                accept="application/json, text/csv"
-                onChange={dataGetter}
-            />
+            <div>
+                <input
+                    type="file"
+                    accept="application/json, text/csv"
+                    onChange={dataGetter}
+                />
+            </div>
         </div>
     );
 };
 
-export default Data;
+export default DataAnalyzerComp;
