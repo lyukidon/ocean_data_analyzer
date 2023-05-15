@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import React, {
     Dispatch,
     SetStateAction,
@@ -5,6 +7,15 @@ import React, {
     useCallback,
     useState,
 } from "react";
+
+import { css } from "@emotion/react";
+
+const menuContainer = css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+`
 
 interface Props {
     fileData: any[];
