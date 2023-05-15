@@ -13,16 +13,16 @@ import Marker from "./Marker";
 import MapInformation from "./MapInformation";
 
 const container = css`
-    width:100%;
-    height:100%
+    width: 100%;
+    height: 100%;
 `;
 
-const mapContainer=css`
+const mapContainer = css`
     position: absolute;
-    top:0;
+    top: 0;
     width: 100%;
-    height:100vh;
-`
+    height: 100vh;
+`;
 
 const stContainer = css`
     padding: 2px;
@@ -54,27 +54,35 @@ interface Props {
     selectedFileData: any[];
 }
 
-export interface MarkerData {
-    "CAST#": number;
-    YYYY: number;
-    MM: number;
-    DD: number;
-    LAT: number;
-    LON: number;
-    Z: number[];
-    T: number[];
-    S: number[];
+// export interface MarkerData {
+//     "CAST#": number;
+//     YYYY: number;
+//     MM: number;
+//     DD: number;
+//     LAT: number;
+//     LON: number;
+//     Z: number[];
+//     T: number[];
+//     S: number[];
+// }
+
+export interface CenterType {
+    lat: number;
+    lng: number;
 }
 
-const MapComponent: React.FC<Props> = ({ fileData, setFileData, selectedFileData }: Props) => {
-
+const MapComponent: React.FC<Props> = ({
+    fileData,
+    setFileData,
+    selectedFileData,
+}: Props) => {
+    const [center, setCenter] = useState<CenterType>({
+        lat: 33.44541,
+        lng: 128.04924,
+    });
     return (
         <div css={container}>
-            <Map
-                css={mapContainer}
-                center={{ lat: 33.44541, lng: 128.04924 }}
-                level={13}
-            >
+            <Map css={mapContainer} center={center} level={13}>
                 <MapInformation />
                 {stage.map((st) => {
                     const { lat, lng, name } = st;
@@ -84,8 +92,15 @@ const MapComponent: React.FC<Props> = ({ fileData, setFileData, selectedFileData
                         </CustomOverlayMap>
                     );
                 })}
-                {selectedFileData.map((data: MarkerData) => {
-                    return <Marker key={data["CAST#"]} {...data} />;
+                {selectedFileData.map((data) => {
+                    return (
+                        <Marker
+                            key={data["CAST#"]}
+                            data = {data}
+                            center={center}
+                            setCenter={setCenter}
+                        />
+                    );
                 })}
             </Map>
         </div>

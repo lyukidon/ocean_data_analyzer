@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 
 import { css } from "@emotion/react";
 
-import { MarkerData } from "./MapComponent";
+import { CenterType } from "./MapComponent";
 
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
@@ -15,7 +15,7 @@ const detailTitle = css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-`
+`;
 const detailContainer = css`
     border: 1px solid black;
     > div {
@@ -35,7 +35,25 @@ interface YType {
     Z: number[];
 }
 
-const Marker: React.FC<MarkerData> = (data: MarkerData) => {
+interface MarkerData {
+    "CAST#": number;
+    YYYY: number;
+    MM: number;
+    DD: number;
+    LAT: number;
+    LON: number;
+    Z: number[];
+    T: number[];
+    S: number[];
+}
+
+interface Props {
+    data: MarkerData;
+    center: CenterType;
+    setCenter: Dispatch<SetStateAction<CenterType>>;
+}
+
+const Marker: React.FC<Props> = ({ data, center, setCenter }: Props) => {
     const { LAT, LON, Z, T, S } = data;
     const cast = data["CAST#"];
 
@@ -69,15 +87,27 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
         }
     }, []);
 
+    const handleClick = () => {
+        setToggle((prev) => !prev);
+        setCenter((prev) => ({
+            ...prev,
+            lat: LAT,
+            lng: LON,
+        }));
+    };
+
     return (
-        <MapMarker
-            key={cast}
-            position={{ lat: LAT, lng: LON }}
-            clickable={true}
-            onClick={() => setToggle((prev) => !prev)}
-        >
+        <>
+            {!toggle && (
+                <MapMarker
+                    key={cast}
+                    position={{ lat: LAT, lng: LON }}
+                    clickable={true}
+                    onClick={handleClick}
+                ></MapMarker>
+            )}
             {toggle && (
-                <CustomOverlayMap position={{ lat: LAT, lng: LON }}>
+                <CustomOverlayMap position={{ lat: LAT + 2, lng: LON - 1 }}>
                     <div css={detailContainer}>
                         <div css={detailTitle}>
                             <div>{`CAST:${cast}`}</div>
@@ -163,7 +193,7 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
                     </div>
                 </CustomOverlayMap>
             )}
-        </MapMarker>
+        </>
     );
 };
 
