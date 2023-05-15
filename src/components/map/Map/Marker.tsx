@@ -107,7 +107,7 @@ const Marker: React.FC<Props> = ({ data, center, setCenter }: Props) => {
                 ></MapMarker>
             )}
             {toggle && (
-                <CustomOverlayMap position={{ lat: LAT + 2, lng: LON - 1 }}>
+                <CustomOverlayMap position={{ lat: LAT, lng: LON }}>
                     <div css={detailContainer}>
                         <div css={detailTitle}>
                             <div>{`CAST:${cast}`}</div>
