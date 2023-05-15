@@ -13,17 +13,16 @@ import Marker from "./Marker";
 import MapInformation from "./MapInformation";
 
 const container = css`
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1200px;
-    height: calc(100vh - 40px);
-    @media screen and (max-width: 768px) {
-        width: 100%;
-        padding: 0 20px;
-        height: 100vh;
-    }
-    border: 1px solid black;
+    width:100%;
+    height:100%
 `;
+
+const mapContainer=css`
+    position: absolute;
+    top:0;
+    width: 100%;
+    height:100vh;
+`
 
 const stContainer = css`
     padding: 2px;
@@ -70,11 +69,11 @@ export interface MarkerData {
 const MapComponent: React.FC<Props> = ({ fileData, setFileData, selectedFileData }: Props) => {
 
     return (
-        <div>
+        <div css={container}>
             <Map
-                css={container}
+                css={mapContainer}
                 center={{ lat: 33.44541, lng: 128.04924 }}
-                level={14}
+                level={13}
             >
                 <MapInformation />
                 {stage.map((st) => {

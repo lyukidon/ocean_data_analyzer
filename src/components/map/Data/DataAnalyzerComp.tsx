@@ -33,7 +33,10 @@ interface dataType {
     S: number[];
 }
 
-const DataAnalyzerComp: React.FC<Props> = ({ fileData, setFileData }: Props) => {
+const DataAnalyzerComp: React.FC<Props> = ({
+    fileData,
+    setFileData,
+}: Props) => {
     const [file, setFile] = useState<any>();
 
     const dataGetter = async (
@@ -152,13 +155,11 @@ const DataAnalyzerComp: React.FC<Props> = ({ fileData, setFileData }: Props) => 
 
     return (
         <div>
-            <div>
-                <input
-                    type="file"
-                    accept="application/json, text/csv"
-                    onChange={dataGetter}
-                />
-            </div>
+            <input
+                type="file"
+                accept="application/json, text/csv"
+                onChange={dataGetter}
+            />
         </div>
     );
 };

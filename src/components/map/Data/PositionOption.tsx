@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 interface Props {
     fileData: any[];
@@ -14,7 +14,12 @@ interface positionType {
     lonEnd: number;
 }
 
-const PositionOption = ({ fileData, setFileData, selectedFileData, setSelectedFileData }: Props) => {
+const PositionOption = ({
+    fileData,
+    setFileData,
+    selectedFileData,
+    setSelectedFileData,
+}: Props) => {
     const [position, setPosition] = useState<positionType>({
         latStart: 0,
         latEnd: 0,
@@ -59,21 +64,28 @@ const PositionOption = ({ fileData, setFileData, selectedFileData, setSelectedFi
         const data = fileData.filter;
     };
 
-    return(
-        <div>
+    return (
+        <>
+            <div>
                 <div>
-                    위도 시작:{" "}
-                    <input
-                        type="text"
-                        name="latStart"
-                        onChange={onChangePosition}
-                    />
-                    위도 끝:{" "}
-                    <input
-                        type="text"
-                        name="latEnd"
-                        onChange={onChangePosition}
-                    />
+                    <div>
+                        위도 시작:{" "}
+                        <input
+                            type="text"
+                            name="latStart"
+                            onChange={onChangePosition}
+                        />
+                    </div>
+                    <div>
+                        위도 끝:{" "}
+                        <input
+                            type="text"
+                            name="latEnd"
+                            onChange={onChangePosition}
+                        />
+                    </div>
+                </div>
+                <div>
                     <button
                         type="button"
                         data-action="latSearch"
@@ -82,19 +94,27 @@ const PositionOption = ({ fileData, setFileData, selectedFileData, setSelectedFi
                         위도 검색
                     </button>
                 </div>
+            </div>
+            <div>
                 <div>
-                    경도 시작:{" "}
-                    <input
-                        type="text"
-                        name="lonStart"
-                        onChange={onChangePosition}
-                    />
-                    경도 끝:{" "}
-                    <input
-                        type="text"
-                        name="lonEnd"
-                        onChange={onChangePosition}
-                    />
+                    <div>
+                        경도 시작:{" "}
+                        <input
+                            type="text"
+                            name="lonStart"
+                            onChange={onChangePosition}
+                        />
+                    </div>
+                    <div>
+                        경도 끝:{" "}
+                        <input
+                            type="text"
+                            name="lonEnd"
+                            onChange={onChangePosition}
+                        />
+                    </div>
+                </div>
+                <div>
                     <button
                         type="button"
                         data-action="lonSearch"
@@ -103,6 +123,8 @@ const PositionOption = ({ fileData, setFileData, selectedFileData, setSelectedFi
                         경도 검색
                     </button>
                 </div>
+            </div>
+            <div>
                 <button
                     type="button"
                     data-action="search"
@@ -111,7 +133,8 @@ const PositionOption = ({ fileData, setFileData, selectedFileData, setSelectedFi
                     전체 검색
                 </button>
             </div>
-    )
-}
+        </>
+    );
+};
 
 export default PositionOption;

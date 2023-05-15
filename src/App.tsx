@@ -12,8 +12,12 @@ import Data from "./components/map/Data/index";
 import MapComponent from "./components/map/Map/MapComponent";
 
 const container = css`
+    position: fixed;
+    top:0;
+    left: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100vw;
 `;
 
 function App() {

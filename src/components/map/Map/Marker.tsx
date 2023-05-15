@@ -69,10 +69,6 @@ const Marker: React.FC<MarkerData> = (data: MarkerData) => {
         }
     }, []);
 
-    useEffect(() => {
-        console.log(xData);
-    }, [xData]);
-
     return (
         <MapMarker
             key={cast}
