@@ -45,6 +45,7 @@ const Index = ({
     `;
 
     const optionContainer = css`
+        display: ${optionToggle ? 'block':'none'};
         > div {
             margin: 20px 10px;
         }
@@ -56,7 +57,6 @@ const Index = ({
                 <FaBars />
             </button>
 
-            {optionToggle && (
                 <div css={optionContainer}>
                     <DataAnalyzerComp
                         fileData={fileData}
@@ -78,7 +78,6 @@ const Index = ({
                     />
                     <hr />
                 </div>
-            )}
         </div>
     );
 };
