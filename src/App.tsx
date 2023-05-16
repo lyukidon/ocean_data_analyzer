@@ -18,6 +18,10 @@ const container = css`
     display: flex;
     flex-direction: row;
     width: 100vw;
+    @media (max-width: 767px) {
+            display: flex;
+            flex-direction: column;
+    }
 `;
 
 function App() {

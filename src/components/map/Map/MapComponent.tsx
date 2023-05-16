@@ -22,6 +22,9 @@ const mapContainer = css`
     top: 0;
     width: 100%;
     height: 100vh;
+    @media (max-width: 767px) {
+        position: relative;
+    }
 `;
 
 const stContainer = css`

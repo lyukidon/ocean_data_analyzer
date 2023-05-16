@@ -28,15 +28,18 @@ const Index = ({
 
     const container = css`
         background-color: rgb(46, 46, 46);
-        border-right: 3px solid rgb(0, 0, 0) ;
+        border-right: 3px solid rgb(0, 0, 0);
         height: 100vh;
         color: #fff;
+        @media (max-width: 767px) {
+            height: 100%;
+        }
     `;
 
     const optionContainer = css`
-       >div{
+        > div {
             margin: 20px 10px;
-       }
+        }
     `;
 
     return (
