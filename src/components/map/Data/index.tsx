@@ -34,6 +34,14 @@ const Index = ({
         @media (max-width: 767px) {
             height: 100%;
         }
+        > button {
+            background-color: #686868;
+            color:#fff;
+            border: none;
+            padding: 5px 8px;
+            margin: 5px;
+            font-size: 19px;
+        }
     `;
 
     const optionContainer = css`
@@ -54,18 +62,21 @@ const Index = ({
                         fileData={fileData}
                         setFileData={setFileData}
                     />
+                    <hr/>
                     <DateOption
                         fileData={fileData}
                         setFileData={setFileData}
                         selectedFileData={selectedFileData}
                         setSelectedFileData={setSelectedFileData}
                     />
+                    <hr />
                     <PositionOption
                         fileData={fileData}
                         setFileData={setFileData}
                         selectedFileData={selectedFileData}
                         setSelectedFileData={setSelectedFileData}
                     />
+                    <hr />
                 </div>
             )}
         </div>

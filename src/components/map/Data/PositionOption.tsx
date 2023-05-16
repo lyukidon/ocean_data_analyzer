@@ -1,4 +1,34 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { Dispatch, SetStateAction, useState } from "react";
+
+const buttonStyle = css`
+    background-color: #898989;
+    color: #fff;
+    border: none;
+    padding: 5px 8px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+        background-color: #ededed;
+        color: #525252;
+    }
+`;
+
+const inputStyle = css`
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #959595;
+    padding: 3px;
+`;
+
+const optionContainer = css`
+    > div {
+
+        margin-bottom: 5px;
+    }
+`;
 
 interface Props {
     fileData: any[];
@@ -68,25 +98,32 @@ const PositionOption = ({
         <>
             <div>
                 <div>
-                    <div>
-                        위도 시작:{" "}
-                        <input
-                            type="text"
-                            name="latStart"
-                            onChange={onChangePosition}
-                        />
-                    </div>
-                    <div>
-                        위도 끝:{" "}
-                        <input
-                            type="text"
-                            name="latEnd"
-                            onChange={onChangePosition}
-                        />
+                    <div css={optionContainer}>
+                        <div>
+                            위도 시작:{" "}
+                            <input
+                                placeholder={"여기에 입력하세요"}
+                                css={inputStyle}
+                                type="text"
+                                name="latStart"
+                                onChange={onChangePosition}
+                            />
+                        </div>
+                        <div>
+                            위도 끝:{" "}
+                            <input
+                                placeholder={"여기에 입력하세요"}
+                                css={inputStyle}
+                                type="text"
+                                name="latEnd"
+                                onChange={onChangePosition}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div>
                     <button
+                        css={buttonStyle}
                         type="button"
                         data-action="latSearch"
                         onClick={onClickPosition}
@@ -97,25 +134,32 @@ const PositionOption = ({
             </div>
             <div>
                 <div>
-                    <div>
-                        경도 시작:{" "}
-                        <input
-                            type="text"
-                            name="lonStart"
-                            onChange={onChangePosition}
-                        />
-                    </div>
-                    <div>
-                        경도 끝:{" "}
-                        <input
-                            type="text"
-                            name="lonEnd"
-                            onChange={onChangePosition}
-                        />
+                    <div css={optionContainer}>
+                        <div>
+                            경도 시작:{" "}
+                            <input
+                                placeholder={"여기에 입력하세요"}
+                                css={inputStyle}
+                                type="text"
+                                name="lonStart"
+                                onChange={onChangePosition}
+                            />
+                        </div>
+                        <div>
+                            경도 끝:{" "}
+                            <input
+                                placeholder={"여기에 입력하세요"}
+                                css={inputStyle}
+                                type="text"
+                                name="lonEnd"
+                                onChange={onChangePosition}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div>
                     <button
+                        css={buttonStyle}
                         type="button"
                         data-action="lonSearch"
                         onClick={onClickPosition}
@@ -126,6 +170,7 @@ const PositionOption = ({
             </div>
             <div>
                 <button
+                    css={buttonStyle}
                     type="button"
                     data-action="search"
                     onClick={onClickPosition}

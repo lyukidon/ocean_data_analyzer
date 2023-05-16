@@ -1,4 +1,16 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
+
+const container=css`
+    > select {
+        margin-right: 5px;
+        padding: 2px;
+        background-color: rgba(0,0,0,0);
+        color: #fff;
+        border:1px solid #fff;
+    }
+`
 
 interface Props {
     fileData: any[];
@@ -110,7 +122,8 @@ const DateOption = ({ fileData, setFileData, selectedFileData, setSelectedFileDa
     }, [selectedDate]);
 
     return (
-        <div>
+        <div css={container}>
+            <div>날짜 선택</div>
             <select name="year" onChange={onChangeDate}>
                 {date.year.map((num) => (
                     <option>{num}</option>
