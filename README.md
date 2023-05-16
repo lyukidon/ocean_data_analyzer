@@ -1,21 +1,21 @@
 # Ocean Data Analyzer
 
-Skill
+#### Skill
 - `React`, `TypeScript`
 ---
-Library
+#### Library
 - `React Kakao Maps SDK`, `Chart JS`, `Emotion`
 ---
-Others
+#### Others
 - `Google Analytics`, `Responsive Web`, `Kakao Map API`
 ---
-Link
+#### Link
 - [http://3.34.137.187:3005/](http://3.34.137.187:3005/)
 ---
-Supported file types
+#### Supported file types
 - `csv`, `json`
 ---
-Usage
+#### Usage
 
 1. Select Data
     - You can use `data.json` file in repository.
@@ -28,5 +28,5 @@ Usage
     - Data Details ( Date, Position )
     - Chart of Temperature and Salinity
 ---
-Data Source
+#### Data Source
 - [National Centers for Environmental Information](https://www.ncei.noaa.gov/access/world-ocean-database/datawodgeo.html)
