@@ -10,6 +10,7 @@ import { css } from "@emotion/react";
 
 import Data from "./components/map/Data/index";
 import MapComponent from "./components/map/Map/MapComponent";
+import {data} from './data'
 
 const container = css`
     position: fixed;
@@ -26,7 +27,7 @@ const container = css`
 
 function App() {
     const [fileData, setFileData]: [any[], Dispatch<SetStateAction<any[]>>] =
-        useState<any[]>([]);
+        useState<any[]>([...data]);
 
     const [selectedFileData, setSelectedFileData] = useState<any[]>([]);
 
