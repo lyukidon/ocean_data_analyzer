@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/css": "^11.11.0",
     "@emotion/react": "^11.11.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,6 +13,7 @@
     "@types/node": "^16.18.27",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/react-redux": "^7.1.25",
     "chart.js": "^4.3.0",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",

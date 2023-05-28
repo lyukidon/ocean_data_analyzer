@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 
 import { css } from "@emotion/react";
 
-import { CenterType } from "./MapComponent";
+import { CenterType } from ".";
 
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);

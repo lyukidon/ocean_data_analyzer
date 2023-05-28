@@ -2,21 +2,27 @@
 import { css } from "@emotion/react";
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 
-const container=css`
+import { toggleType } from "../../../App";
+
+const container = css`
+    border: 1px solid #fff;
+    border-radius: 10px;
     > select {
         margin-right: 5px;
         padding: 2px;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
         color: #fff;
-        border:1px solid #fff;
+        border: 1px solid #fff;
     }
-`
+`;
 
 interface Props {
     fileData: any[];
     setFileData: Dispatch<SetStateAction<any[]>>;
     selectedFileData: any[];
     setSelectedFileData: Dispatch<SetStateAction<any[]>>;
+    toggle: toggleType;
+    setToggle: Dispatch<SetStateAction<toggleType>>;
 }
 
 type dateType = {
@@ -25,19 +31,25 @@ type dateType = {
     day: number[];
 };
 
-type selectedDateType = {
+export interface selectedDateType {
     year: number;
     month: number;
     day: number;
-};
+}
 
-const DateOption = ({ fileData, setFileData, selectedFileData, setSelectedFileData }: Props) => {
-    const [date, setDate]: [dateType, Dispatch<SetStateAction<dateType>>] =
-        useState<dateType>({
-            year: [],
-            month: [],
-            day: [],
-        });
+const DateOption = ({
+    fileData,
+    setFileData,
+    selectedFileData,
+    setSelectedFileData,
+    toggle,
+    setToggle,
+}: Props) => {
+    const [date, setDate]: [dateType, Dispatch<SetStateAction<dateType>>] = useState<dateType>({
+        year: [],
+        month: [],
+        day: [],
+    });
 
     const [selectedDate, setSelectedDate]: [
         selectedDateType,
@@ -61,10 +73,7 @@ const DateOption = ({ fileData, setFileData, selectedFileData, setSelectedFileDa
     const monthFilter = (selectedYear: number) => {
         let arr: number[] = [];
         for (let i = 0; i < fileData.length; i++) {
-            if (
-                selectedYear === fileData[i]["YYYY"] &&
-                arr[arr.length - 1] !== fileData[i]["MM"]
-            ) {
+            if (selectedYear === fileData[i]["YYYY"] && arr[arr.length - 1] !== fileData[i]["MM"]) {
                 arr = [...arr, fileData[i]["MM"]];
             }
         }
@@ -112,10 +121,7 @@ const DateOption = ({ fileData, setFileData, selectedFileData, setSelectedFileDa
         const { year, month, day } = selectedDate;
         if (year !== 0 && month !== 0 && day !== 0) {
             const data = fileData.filter(
-                (cur) =>
-                    cur["YYYY"] === year &&
-                    cur["MM"] === month &&
-                    cur["DD"] === day
+                (cur) => cur["YYYY"] === year && cur["MM"] === month && cur["DD"] === day
             );
             setSelectedFileData((prev) => [...data]);
         }
@@ -123,7 +129,8 @@ const DateOption = ({ fileData, setFileData, selectedFileData, setSelectedFileDa
 
     return (
         <div css={container}>
-            <div>날짜 선택</div>
+            {/* <div><input type="checkbox" name="date" id="" />날짜</div> */}
+            <div>날짜</div>
             <select name="year" onChange={onChangeDate}>
                 {date.year.map((num) => (
                     <option>{num}</option>

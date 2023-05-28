@@ -1,16 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
-import {
-    Map,
-    MapMarker,
-    CustomOverlayMap,
-    Polyline,
-} from "react-kakao-maps-sdk";
+import { Map, MapMarker, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
 import { css } from "@emotion/react";
 
 // components
 import Marker from "./Marker";
 import MapInformation from "./MapInformation";
+
+import { toggleType } from "../../../App";
+import DataInformation from "./DataInformation";
 
 const container = css`
     width: 100%;
@@ -55,19 +53,11 @@ interface Props {
     fileData: any[];
     setFileData: Dispatch<SetStateAction<any[]>>;
     selectedFileData: any[];
+    setSelectedFileData: Dispatch<SetStateAction<any[]>>;
+    toggle: toggleType;
+    setToggle: Dispatch<SetStateAction<toggleType>>;
+    handleToggle: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
-
-// export interface MarkerData {
-//     "CAST#": number;
-//     YYYY: number;
-//     MM: number;
-//     DD: number;
-//     LAT: number;
-//     LON: number;
-//     Z: number[];
-//     T: number[];
-//     S: number[];
-// }
 
 export interface CenterType {
     lat: number;
@@ -78,6 +68,10 @@ const MapComponent: React.FC<Props> = ({
     fileData,
     setFileData,
     selectedFileData,
+    setSelectedFileData,
+    toggle,
+    setToggle,
+    handleToggle,
 }: Props) => {
     const [center, setCenter] = useState<CenterType>({
         lat: 33.44541,
@@ -85,6 +79,7 @@ const MapComponent: React.FC<Props> = ({
     });
     return (
         <div css={container}>
+            {toggle.informationContainer && selectedFileData.length !== 0 && <DataInformation selectedFileData={selectedFileData} setSelectedFileData={setSelectedFileData} setToggle={setToggle} handleToggle={handleToggle} />}
             <Map css={mapContainer} center={center} level={13}>
                 <MapInformation />
                 {stage.map((st) => {
@@ -96,14 +91,7 @@ const MapComponent: React.FC<Props> = ({
                     );
                 })}
                 {selectedFileData.map((data) => {
-                    return (
-                        <Marker
-                            key={data["CAST#"]}
-                            data = {data}
-                            center={center}
-                            setCenter={setCenter}
-                        />
-                    );
+                    return <Marker key={data["CAST#"]} data={data} center={center} setCenter={setCenter} />;
                 })}
             </Map>
         </div>

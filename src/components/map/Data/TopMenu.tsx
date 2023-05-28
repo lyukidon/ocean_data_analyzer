@@ -22,7 +22,7 @@ const TopMenu: React.FC<Props> = ({ toggle, setToggle, handleToggle }: Props) =>
             flex-direction: row;
             justify-content: space-between;
         }
-        > button {
+        button {
             background-color: #686868;
             color: #fff;
             border: none;
@@ -34,12 +34,16 @@ const TopMenu: React.FC<Props> = ({ toggle, setToggle, handleToggle }: Props) =>
 
     return (
         <div css={container}>
-            <button data-action="optionContainer" onClick={handleToggle}>
-                <FaBars />
-            </button>
-            <button data-action="informationContainer" onClick={handleToggle}>
-                <FaInfoCircle />
-            </button>
+            <div>
+                <button data-action="optionContainer" onClick={handleToggle}>
+                    <FaBars />
+                </button>
+            </div>
+            <div>
+                <button data-action="informationContainer" onClick={handleToggle}>
+                    <FaInfoCircle />
+                </button>
+            </div>
         </div>
     );
 };
