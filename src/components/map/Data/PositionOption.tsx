@@ -54,7 +54,7 @@ interface positionType {
 }
 
 export const analyzeRange = (string: string) => {
-    return string.match(/\d+/g)?.map(Number);
+    return string.match(/([\d.]+)\s*-\s*([\d.]+)/)?.map(Number);
 };
 
 const PositionOption = ({
@@ -79,8 +79,9 @@ const PositionOption = ({
     const handlePosition = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const pos: number[] | undefined = analyzeRange(value);
+        console.log(pos)
         pos
-            ? setPosition((prev) => ({ ...prev, [name]: [...pos] }))
+            ? setPosition((prev) => ({ ...prev, [name]: [pos[1],pos[2]] }))
             : setPosition((prev) => ({ ...prev, [name]: [] }));
     };
 
@@ -88,7 +89,7 @@ const PositionOption = ({
         const { name, value } = e.target;
         const date: number[] | undefined = analyzeRange(value);
         date
-            ? setDate((prev) => ({ ...prev, [name]: [...date] }))
+            ? setDate((prev) => ({ ...prev, [name]: [date[1],date[2]] }))
             : setDate((prev) => ({ ...prev, [name]: [] }));
     };
 
@@ -212,6 +213,7 @@ const PositionOption = ({
                 </button>
             </div>
             <div>
+                <div>CAST<input type="text" /><button></button></div>
                 <div>
                     Year: <input type="text" name="year" onChange={handleDate} placeholder="yyyy-yyyy" />
                     <button data-action="yearSearch" onClick={onClickDate}>
