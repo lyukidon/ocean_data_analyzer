@@ -21,7 +21,8 @@ const DataDetails: React.FC<DetailsProps> = ({ cast, YYYY, MM, DD, Z }: DetailsP
         <div>
             <div>cast: {cast}</div>
             <div>Date: {`${YYYY}.${MM}.${DD}`}</div>
-            <div>Z: {Z.length}</div>
+            <div>Number of Z: {Z.length}</div>
+            <div>Z: {Z[Z.length - 1]}m</div>
         </div>
     );
 };
@@ -51,8 +52,9 @@ const DataInformation: React.FC<Props> = ({
     handleToggle,
 }: Props) => {
     const container = css`
-        position: absolute;
-        width: 70%;
+        position: relative;
+        width: 100%;
+        height: 100vh;
         z-index: 9999;
         background-color: #fff;
         display: flex;
@@ -64,7 +66,7 @@ const DataInformation: React.FC<Props> = ({
         justify-content: space-between;
     `;
     const dataContainer = css`
-        height: 100vh;
+        height: 100%;
         overflow-y: scroll;
         > div {
             border: 1px solid black;

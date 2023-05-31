@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { FaRedo } from 'react-icons/fa'
 
 import { toggleType } from "../../../App";
 
@@ -159,9 +160,9 @@ const PositionOption = ({
     };
 
     const onClickCast = () => {
-        const filteredData = selectedFileData.filter( cur => cast.indexOf(cur["CAST#"]) !== -1);
-        setSelectedFileData( prev => [...filteredData])
-    }
+        const filteredData = selectedFileData.filter((cur) => cast.indexOf(cur["CAST#"]) !== -1);
+        setSelectedFileData((prev) => [...filteredData]);
+    };
     return (
         <div css={container}>
             <div>
@@ -226,6 +227,16 @@ const PositionOption = ({
                     onClick={onClickPosition}
                 >
                     전체 검색
+                </button>
+            </div>
+            <div>
+                <button
+                    css={buttonStyle}
+                    type="button"
+                    data-action="search"
+                    onClick={onClickPosition}
+                >
+                    <FaRedo />
                 </button>
             </div>
             <div>
