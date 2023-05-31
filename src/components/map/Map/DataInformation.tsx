@@ -185,7 +185,6 @@ const DataInformation: React.FC<Props> = ({
             });
         }
     }, [graphToggle]);
-    useEffect(() => console.log(meanData), [meanData]);
 
     return (
         <div css={container}>

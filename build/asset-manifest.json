@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ocean_database_analyzer/static/js/main.2465cc03.js",
+    "main.js": "/ocean_database_analyzer/static/js/main.8df125ad.js",
     "index.html": "/ocean_database_analyzer/index.html",
-    "main.2465cc03.js.map": "/ocean_database_analyzer/static/js/main.2465cc03.js.map"
+    "main.8df125ad.js.map": "/ocean_database_analyzer/static/js/main.8df125ad.js.map"
   },
   "entrypoints": [
-    "static/js/main.2465cc03.js"
+    "static/js/main.8df125ad.js"
   ]
 }
