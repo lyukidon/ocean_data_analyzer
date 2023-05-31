@@ -57,6 +57,10 @@ export const analyzeRange = (string: string) => {
     return string.match(/([\d.]+)\s*-\s*([\d.]+)/)?.map(Number);
 };
 
+export const analyzeSpecificNumber = (string: string) => {
+    return string.match(/\d+/g)?.map(Number);
+};
+
 const PositionOption = ({
     fileData,
     setFileData,
@@ -76,12 +80,14 @@ const PositionOption = ({
         day: [],
     });
 
+    const [cast, setCast]: [number[], Dispatch<SetStateAction<number[]>>] = useState<number[]>([]);
+
     const handlePosition = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const pos: number[] | undefined = analyzeRange(value);
-        console.log(pos)
+        console.log(pos);
         pos
-            ? setPosition((prev) => ({ ...prev, [name]: [pos[1],pos[2]] }))
+            ? setPosition((prev) => ({ ...prev, [name]: [pos[1], pos[2]] }))
             : setPosition((prev) => ({ ...prev, [name]: [] }));
     };
 
@@ -89,8 +95,14 @@ const PositionOption = ({
         const { name, value } = e.target;
         const date: number[] | undefined = analyzeRange(value);
         date
-            ? setDate((prev) => ({ ...prev, [name]: [date[1],date[2]] }))
+            ? setDate((prev) => ({ ...prev, [name]: [date[1], date[2]] }))
             : setDate((prev) => ({ ...prev, [name]: [] }));
+    };
+
+    const handleCast = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const cast: number[] | undefined = analyzeSpecificNumber(value);
+        cast ? setCast((prev) => [...cast]) : setCast((prev) => []);
     };
 
     const onClickPosition = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -146,6 +158,10 @@ const PositionOption = ({
         }
     };
 
+    const onClickCast = () => {
+        const filteredData = selectedFileData.filter( cur => cast.indexOf(cur["CAST#"]) !== -1);
+        setSelectedFileData( prev => [...filteredData])
+    }
     return (
         <div css={container}>
             <div>
@@ -213,15 +229,20 @@ const PositionOption = ({
                 </button>
             </div>
             <div>
-                <div>CAST<input type="text" /><button></button></div>
                 <div>
-                    Year: <input type="text" name="year" onChange={handleDate} placeholder="yyyy-yyyy" />
+                    CAST#: <input type="text" placeholder="N,N,N" onChange={handleCast} />
+                    <button onClick={onClickCast}>검색</button>
+                </div>
+                <div>
+                    Year:{" "}
+                    <input type="text" name="year" onChange={handleDate} placeholder="yyyy-yyyy" />
                     <button data-action="yearSearch" onClick={onClickDate}>
                         검색
                     </button>
                 </div>
                 <div>
-                    Month: <input type="text" name="month" onChange={handleDate} placeholder="mm-mm" />
+                    Month:{" "}
+                    <input type="text" name="month" onChange={handleDate} placeholder="mm-mm" />
                     <button data-action="monthSearch" onClick={onClickDate}>
                         검색
                     </button>
@@ -233,9 +254,7 @@ const PositionOption = ({
                     </button>
                 </div>
             </div>
-            <div>
-                {/* <div>데이터 갯수</div> */}
-            </div>
+            <div>{/* <div>데이터 갯수</div> */}</div>
         </div>
     );
 };
