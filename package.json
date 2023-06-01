@@ -1,4 +1,5 @@
 {
+    "homepage": "http://lyukidon.github.io/ocean_data_analyzer/",
     "name": "ocean_database_analyzer",
     "version": "0.1.0",
     "private": true,
