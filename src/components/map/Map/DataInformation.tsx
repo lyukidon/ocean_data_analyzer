@@ -53,7 +53,6 @@ const DataInformation: React.FC<Props> = ({
 }: Props) => {
     const container = css`
         position: relative;
-        width: 100%;
         height: 100vh;
         z-index: 9999;
         background-color: #fff;

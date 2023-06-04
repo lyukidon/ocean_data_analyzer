@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-import DataAnalyzerComp from "./DataAnalyzerComp";
+import DataAnalyzer from "./DataAnalyzer";
 import DateOption from "./DateOption";
 import PositionOption from "./PositionOption";
 import TopMenu from "./TopMenu";
@@ -34,7 +34,6 @@ const Index = ({
 }: Props) => {
     const container = css`
         background-color: rgb(46, 46, 46);
-        border-right: 3px solid rgb(0, 0, 0);
         height: 100vh;
         color: #fff;
         @media (max-width: 767px) {
@@ -56,9 +55,10 @@ const Index = ({
             <TopMenu toggle={toggle} setToggle={setToggle} handleToggle={handleToggle} />
             {toggle.optionContainer && (
                 <div css={optionContainer}>
-                    <DataAnalyzerComp
+                    <DataAnalyzer
                         fileData={fileData}
                         setFileData={setFileData}
+                        selectedFileData={selectedFileData}
                     />
                     <DateOption
                         fileData={fileData}

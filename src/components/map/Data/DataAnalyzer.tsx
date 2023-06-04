@@ -10,6 +10,8 @@ import React, {
 
 import { css } from "@emotion/react";
 
+import DataDownload from "./DataDownload";
+
 const menuContainer = css`
     position: fixed;
     top: 0;
@@ -19,6 +21,7 @@ const menuContainer = css`
 interface Props {
     fileData: any[];
     setFileData: Dispatch<SetStateAction<any[]>>;
+    selectedFileData: any[];
 }
 
 interface dataType {
@@ -36,6 +39,7 @@ interface dataType {
 const DataAnalyzerComp: React.FC<Props> = ({
     fileData,
     setFileData,
+    selectedFileData
 }: Props) => {
     const [file, setFile] = useState<any>();
 
@@ -87,7 +91,6 @@ const DataAnalyzerComp: React.FC<Props> = ({
                 let obj: any = {};
                 let cast = 1;
                 for (let i = 1; i < splittedData.length - 1; i++) {
-                    console.log(i);
                     // 0 : head, last: null
                     if (i === splittedData.length - 2) {
                         // last turn: push obj in arr
@@ -153,6 +156,10 @@ const DataAnalyzerComp: React.FC<Props> = ({
         func();
     }, [file]);
 
+    useEffect(()=>{
+
+    },[fileData])
+
     return (
         <div>
             <input
@@ -160,6 +167,7 @@ const DataAnalyzerComp: React.FC<Props> = ({
                 accept="application/json, text/csv"
                 onChange={dataGetter}
             />
+            <DataDownload fileData={fileData} selectedFileData={selectedFileData} />
         </div>
     );
 };
