@@ -11,6 +11,8 @@
 
 #### Link
 - [http://3.34.137.187:3005/](http://3.34.137.187:3005/)
+or
+- [https://github.com/lyukidon/ocean_data_analyzer](https://github.com/lyukidon/ocean_data_analyzer)
 
 #### Supported file types
 - `csv`, `json`
