@@ -18,6 +18,7 @@
 
 #### Supported file types
 - `csv`, `json`
+- [How to convert WOD file to csv file](https://www.nodc.noaa.gov/OC5/TUTORIAL/csvfromwod_instructions.html)
 
 #### Usage
 
