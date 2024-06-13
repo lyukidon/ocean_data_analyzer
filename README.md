@@ -16,6 +16,9 @@
     
 - [https://github.com/lyukidon/ocean_data_analyzer](https://github.com/lyukidon/ocean_data_analyzer)
 
+#### Data Source
+- [National Centers for Environmental Information](https://www.ncei.noaa.gov/access/world-ocean-database/datawodgeo.html)
+
 #### Supported file types
 - `csv`, `json`
 - [How to convert WOD file to csv file](https://www.nodc.noaa.gov/OC5/TUTORIAL/csvfromwod_instructions.html)
@@ -39,6 +42,3 @@
         - Period of Data
         - Number of Data
         - Graph of Data Average
-
-#### Data Source
-- [National Centers for Environmental Information](https://www.ncei.noaa.gov/access/world-ocean-database/datawodgeo.html)
